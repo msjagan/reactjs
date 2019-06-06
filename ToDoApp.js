@@ -74,18 +74,19 @@ class ToDoApp extends Component {
             items: itemsa
         });
     }
-    
+
 }
 
 class TodoList extends Component {
-    
+
     render() {
         return (
-            <ul>
+            <table>
+            <tr><td>Name</td><td>Action</td></tr>
                 {this.props.items.map(item => (
-                    <li key={item.id}>{item.text} <button onClick={(e) => {this.props.remove(e, item)}}>X</button></li>
+                    <tr><td key={item.id}>{item.text}</td><td><button onClick={(e) => {this.props.remove(e, item)}}>X</button></td></tr>
                 ))}
-            </ul>
+            </table>
         );
     }
 }
