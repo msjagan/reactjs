@@ -26,18 +26,34 @@ class ToDoApp extends Component {
         );
     }
 
+    addText() {
+        const newItem = {
+            text: this.state.text,
+            id: this.state.items.length
+        };
+
+        this.setState(state => ({
+            items: state.items.concat(newItem),
+            text: ''
+        }));
+    }
     handleSubmit(e) {
         e.preventDefault();
         if (this.state.text.length > 0) {
-            const newItem = {
-                text: this.state.text,
-                id: this.state.items.length
-            };
-
-            this.setState(state => ({
-                items: state.items.concat(newItem),
-                text: ''
-            }));
+            let text = this.state.text;
+            if (this.state.items.length > 0) {
+                var itemsa = this.state.items.filter(function (itm) {
+                    return itm.text === text;
+                });
+                
+                if (itemsa.length > 0)  {
+                  alert("Already Exist")  
+                } else {
+                    this.addText();
+                }
+            } else {
+                this.addText();
+            }
         } else {
             return;
         }
